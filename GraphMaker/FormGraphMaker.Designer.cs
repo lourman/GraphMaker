@@ -73,6 +73,7 @@ namespace GraphMaker
             this.buttonCreateGraph.TabIndex = 10;
             this.buttonCreateGraph.Text = "Create Graph";
             this.buttonCreateGraph.UseVisualStyleBackColor = true;
+            this.buttonCreateGraph.Click += new System.EventHandler(this.buttonCreateGraph_Click);
             // 
             // textBoxYAxisName
             // 
