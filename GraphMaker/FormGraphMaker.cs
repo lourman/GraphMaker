@@ -178,6 +178,14 @@ namespace GraphMaker
             CheckTitle(textBoxGraphTitle.Text);
             CheckXAxisName(textBoxXAxisName.Text);
             CheckYAxisName(textBoxYAxisName.Text);
+
+            dataGridView1.ColumnCount = 2;
+            DataGridViewRow row = new DataGridViewRow();
+
+            foreach (var d in data)
+            {
+                dataGridView1.Rows.Add("", d.ToString());
+            }
         }
     }
 }

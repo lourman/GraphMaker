@@ -41,7 +41,11 @@ namespace GraphMaker
             this.labelCategories = new System.Windows.Forms.Label();
             this.textBoxData = new System.Windows.Forms.TextBox();
             this.labelData = new System.Windows.Forms.Label();
+            this.groupBoxDataRepresentation = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBoxInputs.SuspendLayout();
+            this.groupBoxDataRepresentation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxInputs
@@ -60,7 +64,7 @@ namespace GraphMaker
             this.groupBoxInputs.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBoxInputs.Location = new System.Drawing.Point(0, 0);
             this.groupBoxInputs.Name = "groupBoxInputs";
-            this.groupBoxInputs.Size = new System.Drawing.Size(319, 450);
+            this.groupBoxInputs.Size = new System.Drawing.Size(319, 457);
             this.groupBoxInputs.TabIndex = 0;
             this.groupBoxInputs.TabStop = false;
             this.groupBoxInputs.Text = "User Input";
@@ -157,16 +161,37 @@ namespace GraphMaker
             this.labelData.TabIndex = 0;
             this.labelData.Text = "Enter the data within the box (Comma or space separated):";
             // 
+            // groupBoxDataRepresentation
+            // 
+            this.groupBoxDataRepresentation.Controls.Add(this.dataGridView1);
+            this.groupBoxDataRepresentation.Location = new System.Drawing.Point(325, 0);
+            this.groupBoxDataRepresentation.Name = "groupBoxDataRepresentation";
+            this.groupBoxDataRepresentation.Size = new System.Drawing.Size(463, 450);
+            this.groupBoxDataRepresentation.TabIndex = 1;
+            this.groupBoxDataRepresentation.TabStop = false;
+            this.groupBoxDataRepresentation.Text = "Data Output";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(208, 413);
+            this.dataGridView1.TabIndex = 0;
+            // 
             // FormGraphMaker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 457);
+            this.Controls.Add(this.groupBoxDataRepresentation);
             this.Controls.Add(this.groupBoxInputs);
             this.Name = "FormGraphMaker";
             this.Text = "Graph Maker";
             this.groupBoxInputs.ResumeLayout(false);
             this.groupBoxInputs.PerformLayout();
+            this.groupBoxDataRepresentation.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -185,6 +210,8 @@ namespace GraphMaker
         private System.Windows.Forms.Label labelXAxisName;
         private System.Windows.Forms.TextBox textBoxGraphTitle;
         private System.Windows.Forms.Label labelGraphTitle;
+        private System.Windows.Forms.GroupBox groupBoxDataRepresentation;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
