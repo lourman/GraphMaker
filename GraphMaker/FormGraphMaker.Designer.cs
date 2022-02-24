@@ -43,9 +43,11 @@ namespace GraphMaker
             this.labelData = new System.Windows.Forms.Label();
             this.groupBoxDataRepresentation = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBoxInputs.SuspendLayout();
             this.groupBoxDataRepresentation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxInputs
@@ -81,7 +83,7 @@ namespace GraphMaker
             // 
             // textBoxYAxisName
             // 
-            this.textBoxYAxisName.Location = new System.Drawing.Point(0, 342);
+            this.textBoxYAxisName.Location = new System.Drawing.Point(6, 342);
             this.textBoxYAxisName.Name = "textBoxYAxisName";
             this.textBoxYAxisName.Size = new System.Drawing.Size(307, 20);
             this.textBoxYAxisName.TabIndex = 9;
@@ -93,7 +95,7 @@ namespace GraphMaker
             this.labelYAxisName.Name = "labelYAxisName";
             this.labelYAxisName.Size = new System.Drawing.Size(134, 13);
             this.labelYAxisName.TabIndex = 8;
-            this.labelYAxisName.Text = "Enter the X variable Name:";
+            this.labelYAxisName.Text = "Enter the Y variable Name:";
             // 
             // textBoxXAxisName
             // 
@@ -163,6 +165,7 @@ namespace GraphMaker
             // 
             // groupBoxDataRepresentation
             // 
+            this.groupBoxDataRepresentation.Controls.Add(this.pictureBox1);
             this.groupBoxDataRepresentation.Controls.Add(this.dataGridView1);
             this.groupBoxDataRepresentation.Location = new System.Drawing.Point(325, 0);
             this.groupBoxDataRepresentation.Name = "groupBoxDataRepresentation";
@@ -176,8 +179,16 @@ namespace GraphMaker
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(6, 19);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(208, 413);
+            this.dataGridView1.Size = new System.Drawing.Size(451, 107);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(6, 132);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(451, 312);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // FormGraphMaker
             // 
@@ -192,6 +203,7 @@ namespace GraphMaker
             this.groupBoxInputs.PerformLayout();
             this.groupBoxDataRepresentation.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -212,6 +224,7 @@ namespace GraphMaker
         private System.Windows.Forms.Label labelGraphTitle;
         private System.Windows.Forms.GroupBox groupBoxDataRepresentation;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
