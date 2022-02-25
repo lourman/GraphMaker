@@ -186,6 +186,9 @@ namespace GraphMaker
             hh();
         }
 
+        /// <summary>
+        /// Populates the datagridview. 
+        /// </summary>
         private void PopulateDataTable()
         {
             if (data.Count > 0)
@@ -214,11 +217,22 @@ namespace GraphMaker
 
                 for (int i = 0; i < data.Count; i++)
                 {
-                    dataGridView1.Rows.Add("", data[i].ToString());
+                    if (i < categories.Count)
+                    {
+                        dataGridView1.Rows.Add(categories[i], data[i].ToString());
+                    }
+                    else
+                    {
+                        dataGridView1.Rows.Add("", data[i].ToString());
+                    }
                 }
             }
         }
 
+        /// <summary>
+        /// Setup the DataGridView
+        ///  
+        /// </summary>
         private void SetupDataTable()
         {
             dataGridView1.ColumnCount = 2;
@@ -251,8 +265,13 @@ namespace GraphMaker
             int width_per_item = width / (2*data.Count);
             int height_ratio = height / 20;
 
-           //g.FillRectangle(new SolidBrush(Color.Black), 0, 0, width, height);  // Clear the whole drawing area with a color
-
+            //AxisLimits = new CRectangle(0, 0, this.Width, this.Height);
+            ///PageLimits = new CRectangle(0, 0, this.Width, this.Height);
+            Pen PenAxis = new Pen(Color.Red);
+            g.DrawLine(PenAxis, 0, height-1, width, height-1);            
+            g.DrawLine(PenAxis, 0, height - 1, 0, 0);
+            //g.FillRectangle(new SolidBrush(Color.Black), 0, 0, width, height);  // Clear the whole drawing area with a color
+            
             for (int i = 0, j = 0; i < data.Count; j +=2, i++)
             {
                 var value = data[i];
