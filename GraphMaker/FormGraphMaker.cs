@@ -42,8 +42,10 @@ namespace GraphMaker
             // Split the data if a comma or a space is found
             string[] arrayOfIntegers = input.Split(new char[]{ ' ', ','});
 
+            // Make sure you clear the data list before
+            data.Clear();
             // Convert each string in the array of values to integers
-            foreach(string s in arrayOfIntegers)
+            foreach (string s in arrayOfIntegers)
             {
                 int value;
                 // Make sure that the string supplied is an integer if not then return false
@@ -183,7 +185,7 @@ namespace GraphMaker
             // Display Data in Table
             PopulateDataTable();
 
-            hh();
+            DrawBarGraph();
         }
 
         /// <summary>
@@ -195,22 +197,22 @@ namespace GraphMaker
             {
                 SetupDataTable();
 
-                dataGridView1.Rows.Clear();
+                dataGridViewData.Rows.Clear();
                 if (xAxisName.Length > 0)
                 {
-                    dataGridView1.Columns[0].Name = xAxisName;
+                    dataGridViewData.Columns[0].Name = xAxisName;
                 }
                 else
                 {
-                    dataGridView1.Columns[0].Name = "X-Axis";
+                    dataGridViewData.Columns[0].Name = "X-Axis";
                 }
                 if (yAxisName.Length > 0)
                 {
-                    dataGridView1.Columns[1].Name = yAxisName;
+                    dataGridViewData.Columns[1].Name = yAxisName;
                 }
                 else
                 {
-                    dataGridView1.Columns[1].Name = "Y-Axis";
+                    dataGridViewData.Columns[1].Name = "Y-Axis";
                 }
 
                 DataGridViewRow row = new DataGridViewRow();
@@ -219,73 +221,93 @@ namespace GraphMaker
                 {
                     if (i < categories.Count)
                     {
-                        dataGridView1.Rows.Add(categories[i], data[i].ToString());
+                        dataGridViewData.Rows.Add(categories[i], data[i].ToString());
                     }
                     else
                     {
-                        dataGridView1.Rows.Add("", data[i].ToString());
+                        dataGridViewData.Rows.Add("", data[i].ToString());
                     }
                 }
             }
         }
 
         /// <summary>
-        /// Setup the DataGridView
-        ///  
+        /// Setup the DataGridView        
         /// </summary>
         private void SetupDataTable()
         {
-            dataGridView1.ColumnCount = 2;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
-
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.Single;
-            dataGridView1.GridColor = Color.Black;
-            dataGridView1.RowHeadersVisible = false;
-
-            
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.ReadOnly = true;
-            dataGridView1.MultiSelect = false;
+            dataGridViewData.ColumnCount = 2;
+            dataGridViewData.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
+            dataGridViewData.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridViewData.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridViewData.Font, FontStyle.Bold);
+            dataGridViewData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            dataGridViewData.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewData.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            dataGridViewData.GridColor = Color.Black;
+            dataGridViewData.RowHeadersVisible = false;            
+            dataGridViewData.AllowUserToAddRows = false;
+            dataGridViewData.ReadOnly = true;
+            dataGridViewData.MultiSelect = false;
         }
-        private void hh()
+
+
+        /// <summary>
+        /// Draws the bar graph
+        /// </summary>
+        private void DrawBarGraph()
         {
-            Bitmap flag = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            Graphics g = Graphics.FromImage(flag);
+            // Setup the chart area
+            SetupChartArea();
 
-            SolidBrush brush = new SolidBrush(Color.Red);
-            SolidBrush brush2 = new SolidBrush(Color.White);
-            int width = (int)g.VisibleClipBounds.Size.Width;
-            int height = (int)g.VisibleClipBounds.Size.Height;
-            //int max_value = data.Max();  // for responsive height
-            int width_per_item = width / (2*data.Count);
-            int height_ratio = height / 20;
+            // Get the graphics from the bitmap image
+            Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            Graphics g = Graphics.FromImage(bmp);
 
-            //AxisLimits = new CRectangle(0, 0, this.Width, this.Height);
-            ///PageLimits = new CRectangle(0, 0, this.Width, this.Height);
+            // Add an offset for making sure the arrows apear the end of the axis
+            int offset = 5;
+        
+            // Brush for the bars
+            SolidBrush barBrush = new SolidBrush(Color.Blue);
+
+            // Get width and height of drawing area
+            int width = (int)g.VisibleClipBounds.Size.Width - offset;
+            int height = (int)g.VisibleClipBounds.Size.Height - offset;
+            
+            // Calculate the height ratio depending on the maximum data value and the width of each bar,
+            // taking into account that a space is needed between the bars.
+            int max_value = data.Max(); 
+            int width_per_item = (width) / (2*data.Count);
+            int height_ratio = (height) / max_value;
+
+            // Create a pen with an arrow end
             Pen PenAxis = new Pen(Color.Red);
-            g.DrawLine(PenAxis, 0, height-1, width, height-1);            
-            g.DrawLine(PenAxis, 0, height - 1, 0, 0);
-            //g.FillRectangle(new SolidBrush(Color.Black), 0, 0, width, height);  // Clear the whole drawing area with a color
+            PenAxis.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
+
+            // Draw the axis
+            g.DrawLine(PenAxis, offset, height-1 - offset, width - offset, height-1 - offset);            
+            g.DrawLine(PenAxis, offset, height - 1 - offset, offset, offset);
             
             for (int i = 0, j = 0; i < data.Count; j +=2, i++)
             {
                 var value = data[i];
                 int bar_height = height_ratio * value;
-                g.FillRectangle(brush, new Rectangle(
-                    new Point(j * width_per_item, height - bar_height),
-                    new Size(width_per_item, bar_height)
-                ));
-                g.FillRectangle(brush2, new Rectangle(
-                    new Point((j+1) * width_per_item, height),
-                    new Size(width_per_item, bar_height)
-                ));
+                // Rectangle respresenting the bar
+                Rectangle bar = new Rectangle(new Point(j * width_per_item + offset, height - bar_height - offset), new Size(width_per_item, bar_height));
+                g.FillRectangle(barBrush, bar);
+                
             }
-            pictureBox1.Image = flag;
+            pictureBox1.Image = bmp;
+        }
+
+        /// <summary>
+        /// Make sure all labels are populated for the bar chart area
+        /// </summary>
+        private void SetupChartArea()
+        {
+            labelChartTitleLabel.Text = graphTitle;
+            labelXAxisLabel.Text = xAxisName;
+            labelYAxisLabel.Text = yAxisName;
         }
     }
 }

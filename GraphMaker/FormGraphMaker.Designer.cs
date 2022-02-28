@@ -42,12 +42,15 @@ namespace GraphMaker
             this.textBoxData = new System.Windows.Forms.TextBox();
             this.labelData = new System.Windows.Forms.Label();
             this.groupBoxDataRepresentation = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.dataGridViewData = new System.Windows.Forms.DataGridView();
+            this.labelXAxisLabel = new System.Windows.Forms.Label();
+            this.labelYAxisLabel = new System.Windows.Forms.Label();
+            this.labelChartTitleLabel = new System.Windows.Forms.Label();
             this.groupBoxInputs.SuspendLayout();
             this.groupBoxDataRepresentation.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewData)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxInputs
@@ -165,8 +168,11 @@ namespace GraphMaker
             // 
             // groupBoxDataRepresentation
             // 
+            this.groupBoxDataRepresentation.Controls.Add(this.labelChartTitleLabel);
+            this.groupBoxDataRepresentation.Controls.Add(this.labelYAxisLabel);
+            this.groupBoxDataRepresentation.Controls.Add(this.labelXAxisLabel);
             this.groupBoxDataRepresentation.Controls.Add(this.pictureBox1);
-            this.groupBoxDataRepresentation.Controls.Add(this.dataGridView1);
+            this.groupBoxDataRepresentation.Controls.Add(this.dataGridViewData);
             this.groupBoxDataRepresentation.Location = new System.Drawing.Point(325, 0);
             this.groupBoxDataRepresentation.Name = "groupBoxDataRepresentation";
             this.groupBoxDataRepresentation.Size = new System.Drawing.Size(463, 450);
@@ -174,21 +180,48 @@ namespace GraphMaker
             this.groupBoxDataRepresentation.TabStop = false;
             this.groupBoxDataRepresentation.Text = "Data Output";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(451, 107);
-            this.dataGridView1.TabIndex = 0;
-            // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(6, 132);
+            this.pictureBox1.Location = new System.Drawing.Point(6, 149);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(451, 312);
+            this.pictureBox1.Size = new System.Drawing.Size(451, 276);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            // 
+            // dataGridViewData
+            // 
+            this.dataGridViewData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewData.Location = new System.Drawing.Point(6, 19);
+            this.dataGridViewData.Name = "dataGridViewData";
+            this.dataGridViewData.Size = new System.Drawing.Size(451, 107);
+            this.dataGridViewData.TabIndex = 0;
+            // 
+            // labelXAxisLabel
+            // 
+            this.labelXAxisLabel.AutoSize = true;
+            this.labelXAxisLabel.Location = new System.Drawing.Point(393, 428);
+            this.labelXAxisLabel.Name = "labelXAxisLabel";
+            this.labelXAxisLabel.Size = new System.Drawing.Size(35, 13);
+            this.labelXAxisLabel.TabIndex = 2;
+            this.labelXAxisLabel.Text = "label1";
+            // 
+            // labelYAxisLabel
+            // 
+            this.labelYAxisLabel.AutoSize = true;
+            this.labelYAxisLabel.Location = new System.Drawing.Point(6, 133);
+            this.labelYAxisLabel.Name = "labelYAxisLabel";
+            this.labelYAxisLabel.Size = new System.Drawing.Size(35, 13);
+            this.labelYAxisLabel.TabIndex = 3;
+            this.labelYAxisLabel.Text = "label2";
+            // 
+            // labelChartTitleLabel
+            // 
+            this.labelChartTitleLabel.AutoSize = true;
+            this.labelChartTitleLabel.Location = new System.Drawing.Point(218, 133);
+            this.labelChartTitleLabel.Name = "labelChartTitleLabel";
+            this.labelChartTitleLabel.Size = new System.Drawing.Size(35, 13);
+            this.labelChartTitleLabel.TabIndex = 4;
+            this.labelChartTitleLabel.Text = "label3";
             // 
             // FormGraphMaker
             // 
@@ -202,8 +235,9 @@ namespace GraphMaker
             this.groupBoxInputs.ResumeLayout(false);
             this.groupBoxInputs.PerformLayout();
             this.groupBoxDataRepresentation.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBoxDataRepresentation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewData)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -223,8 +257,11 @@ namespace GraphMaker
         private System.Windows.Forms.TextBox textBoxGraphTitle;
         private System.Windows.Forms.Label labelGraphTitle;
         private System.Windows.Forms.GroupBox groupBoxDataRepresentation;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewData;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label labelChartTitleLabel;
+        private System.Windows.Forms.Label labelYAxisLabel;
+        private System.Windows.Forms.Label labelXAxisLabel;
     }
 }
 
